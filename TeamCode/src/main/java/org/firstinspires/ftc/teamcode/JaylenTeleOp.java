@@ -57,6 +57,7 @@ public class JaylenTeleOp extends OpMode
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
     private ElapsedTime timer = new ElapsedTime();
+    private ElapsedTime Timer1 = new ElapsedTime();
     // = null;
     private DcMotor arm = null;
 
@@ -128,7 +129,7 @@ public class JaylenTeleOp extends OpMode
     public void loop() {
         // Setup a variable for each drive wheel to save power level for telemetry
 
-//e
+
         if(gamepad1.a)
         {
             arm.setPower(1);
@@ -163,20 +164,20 @@ public class JaylenTeleOp extends OpMode
                 if(timer.milliseconds()>1000)
                 {
                     jaw.setPosition(0.5);
-
+                    Timer1.reset();
+                    servoStates = ServoStates.SERVO_FULL;
                 }
 
-                servoStates = ServoStates.SERVO_FULL;
                 break;
             }
             case SERVO_FULL:
             {
-                if(timer.milliseconds()>1000)
+                if(Timer1.milliseconds()>1000)
                 {
                     jaw.setPosition(1);
                     timer.reset();
+                    servoStates = ServoStates.SERVO_ZERO;
                 }
-                servoStates = ServoStates.SERVO_ZERO;
                 break;
             }
 
@@ -213,6 +214,7 @@ public class JaylenTeleOp extends OpMode
         telemetry.addData("arm power", arm.getPower());
         telemetry.addData("jaw position", jaw.getPosition());
         telemetry.addData("state: ", servoStates);
+        telemetry.addData("timer", timer.milliseconds());
     }
 
     /*
