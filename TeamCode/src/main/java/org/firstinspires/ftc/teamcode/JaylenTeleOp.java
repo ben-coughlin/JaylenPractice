@@ -57,7 +57,7 @@ public class JaylenTeleOp extends OpMode
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
     private ElapsedTime timer = new ElapsedTime();
-    private ElapsedTime Timer1 = new ElapsedTime();
+
     // = null;
     private DcMotor arm = null;
 
@@ -164,7 +164,7 @@ public class JaylenTeleOp extends OpMode
                 if(timer.milliseconds()>1000)
                 {
                     jaw.setPosition(0.5);
-                    Timer1.reset();
+                    timer.reset();
                     servoStates = ServoStates.SERVO_FULL;
                 }
 
@@ -172,7 +172,7 @@ public class JaylenTeleOp extends OpMode
             }
             case SERVO_FULL:
             {
-                if(Timer1.milliseconds()>1000)
+                if(timer.milliseconds()>1000)
                 {
                     jaw.setPosition(1);
                     timer.reset();
