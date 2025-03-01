@@ -183,7 +183,6 @@ public class JaylenTeleOp extends OpMode
 
         }
 
-
 //      '  if(gamepad1.dpad_up)
 //        {
 //            jaw.setPosition(0.4);
